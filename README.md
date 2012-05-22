@@ -22,29 +22,29 @@ pip install whoislookup
 - w.registrar 
 
 ###[usage]###
-  In [1]: from whoislookup import WhoisLookup
+    In [1]: from whoislookup import WhoisLookup
 
-  In [2]: w = WhoisLookup('facebook.co.uk')
+    In [2]: w = WhoisLookup('facebook.co.uk')
   
-  In [3]: w.domain
+    In [3]: w.domain
     
-    Out[3]: ['facebook.co.uk']
+      Out[3]: ['facebook.co.uk']
   
-  In [4]: w.nameservers
+    In [4]: w.nameservers
     
-    Out[4]: 
-    ['dns091.b.register.com',
-    'dns209.c.register.com',
-    'dns225.a.register.com',
-    'dns249.d.register.com']
+      Out[4]: 
+      ['dns091.b.register.com',
+      'dns209.c.register.com',
+      'dns225.a.register.com',
+      'dns249.d.register.com']
   
-  In [5]: w.relevent_dates
+    In [5]: w.relevent_dates
     
-    Out[5]: 
-    ['Registered on: 30-Dec-2004',
-    'Expiry date:  30-Dec-2012',
-    'Last updated:  08-Feb-2011']
-  
-  In [6]: w.expiry_date
+      Out[5]: 
+      ['Registered on: 30-Dec-2004',
+      'Expiry date:  30-Dec-2012',
+      'Last updated:  08-Feb-2011']
     
-    Out[6]: '30-Dec-2012'
+    In [6]: w.expiry_date
+    
+      Out[6]: '30-Dec-2012'
