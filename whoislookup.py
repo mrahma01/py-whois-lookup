@@ -1,5 +1,6 @@
 from HTMLParser import HTMLParser
-from urllib2 import urlopen
+from urllib2 import urlopen, URLError
+import socket
 
 WHOISHOST = 'http://webwhois.nic.uk/cgi-bin/webwhois.cgi?wvw7yesk=3hryr4hby3&wquery='
 
@@ -9,8 +10,11 @@ class MyParser(HTMLParser):
     def __init__(self, url):
         self.stack = []
         HTMLParser.__init__(self)
-        req = urlopen(url)
-        self.feed(req.read())
+        try:
+            req = urlopen(url)
+            self.feed(req.read())
+        except URLError:
+            print "No Internet Connection"
 
     def handle_starttag(self, tag, attrs):
         if tag.lower() == 'pre':
@@ -24,19 +28,22 @@ class WhoisLookup(object):
         self.__url = WHOISHOST + url
         p = MyParser(self.__url)
         self.raw_output = ''
-        self.data = self.__clean_data(p.stack)
-        self.domain = self.__get_domain()
-        self.registrant = self.__get_registrant()
-        self.registrant_type = self.__get_registrant_type()
-        self.registrant_address = self.__get_registrant_address()
-        self.registrar = self.__get_registrar()
-        self.relevent_dates = self.__get_relevent_dates()
-        self.registered_on = self.__get_registered_on()
-        self.expiry_date = self.__get_expiry_date()
-        self.last_updated = self.__get_last_updated()
-        self.registration_status = self.__get_registration_status()
-        self.nameservers = self.__get_nameservers()
-        self.lookup_time = self.__get_lookup_time()
+        if p.stack:
+            self.data = self.__clean_data(p.stack)
+            self.domain = self.__get_domain()
+            self.registrant = self.__get_registrant()
+            self.registrant_type = self.__get_registrant_type()
+            self.registrant_address = self.__get_registrant_address()
+            self.registrar = self.__get_registrar()
+            self.relevent_dates = self.__get_relevent_dates()
+            self.registered_on = self.__get_registered_on()
+            self.expiry_date = self.__get_expiry_date()
+            self.last_updated = self.__get_last_updated()
+            self.registration_status = self.__get_registration_status()
+            self.nameservers = self.__get_nameservers()
+            self.lookup_time = self.__get_lookup_time()
+        else:
+            print 'Raw output is empty'
     
     def __f(self, x):
         if x == '':
