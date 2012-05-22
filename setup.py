@@ -1,6 +1,5 @@
-# python setup.py bdist or bdist_egg
 # python setup.py register
-# python setup.py bdist upload
+# python setup.py sdist upload
 from setuptools import setup
 
 setup(
