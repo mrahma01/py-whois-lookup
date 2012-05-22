@@ -6,7 +6,7 @@ A simple whois lookup script. This is still in beta so only UK domains works.
 pip install whoislookup
 
 ###[allowed methods]###
--w.data                 w.last_updated         w.raw_output           w.registrant_address   w.registration_status
+- w.data                 w.last_updated         w.raw_output           w.registrant_address   w.registration_status
 -w.domain               w.lookup_time          w.registered_on        w.registrant_type      w.relevent_dates
 -w.expiry_date          w.nameservers          w.registrant           w.registrar 
 
